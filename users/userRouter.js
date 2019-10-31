@@ -3,12 +3,13 @@ const userdb = require('./userDb');
 const router = express.Router();
 
 router.post('/', (req, res) => {
+    console.log(req.body);
     userdb.insert(req.body)
     .then(user => {
         res.status(201).json(user)
     })
     .catch(err => {
-        console.log(err);
+        console.log("post user error", err);
         res.status(500).json({ message: 'Error adding the user' })
     })
 });
